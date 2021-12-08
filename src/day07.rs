@@ -1,13 +1,12 @@
 pub fn lowest_fuel_cost(input: &str, nonlinear: bool) -> u64 {
-    let mut positions = input
+    let positions = input
         .trim()
         .split(',')
         .map(|s| s.parse::<u64>().unwrap())
         .collect::<Vec<u64>>();
 
-    positions.sort_unstable();
-    let min = positions[0];
-    let max = positions[positions.len() - 1];
+    let &min = positions.iter().min().unwrap();
+    let &max = positions.iter().max().unwrap();
 
     if nonlinear {
         (min..=max)
